@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>她说</title>
+  <style>
+    :root {
+      --glass: rgba(255,255,255,0.12);
+      --shadow: rgba(0,0,0,0.28);
+      --overlay: rgba(0,0,0,0.35); /* 背景遮罩深浅 */
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; padding: 20px; min-height: 100vh;
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      color: #fff; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+
+      /* 关键：两层背景（遮罩 + 图片），图片用 raw 直链，并加 ?v=1 防缓存 */
+      background-image:
+        linear-gradient(135deg, var(--overlay), var(--overlay)),
+        url("https://raw.githubusercontent.com/hamber2005/yicijiuhao/main/yicijiuhaopicture.png?v=1");
+      background-size: cover;          /* 铺满 */
+      background-position: center;     /* 居中 */
+      background-repeat: no-repeat;    /* 不平铺 */
+      /* 不用 background-attachment: fixed; 避免 iOS/Safari 问题 */
+    }
+    .container {
+      width: min(92vw, 560px);
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 38px 30px;
+      border-radius: 20px;
+      box-shadow: 0 16px 40px var(--shadow);
+    }
+    h1 { margin: 0 0 14px; font-size: clamp(24px, 2.6vw + 18px, 34px); text-shadow: 0 2px 10px var(--shadow); }
+    p.sub { margin: 0 0 18px; opacity: .9 }
+    audio { width: 100%; margin: 18px 0 8px; border-radius: 8px; outline: none; }
+    .message { margin-top: 18px; line-height: 1.7; font-size: 16px; }
+    .download { display:inline-block; margin-top:8px; font-size:14px; opacity:.9; color:#fff; }
+    .download:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  
+   
+
+    <!-- 音频播放器（使用可直链的 RAW 地址） -->
+    <audio controls preload="none">
+      <source src="https://raw.githubusercontent.com/hamber2005/yicijiuhao/main/一次就好.mp3" type="audio/mpeg">
+      你的浏览器不支持音频播放。
+    </audio>
+
+    <!-- 备用下载链接（某些老旧浏览器或跨域策略下可用作兜底） -->
+    <div>
+      <a class="download" href="https://raw.githubusercontent.com/hamber2005/yicijiuhao/main/一次就好.mp3" download>下载歌曲</a>
+    </div>
+  </div>
+</body>
+</html>
